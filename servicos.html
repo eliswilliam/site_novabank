@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Bank - Produtos e Serviços Financeiros</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_32.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo-brand">
+                <img src="assets/logo_256.png" alt="Nova Bank Logo" class="logo-img">
+                <span class="logo-text">Nova<span>Bank</span></span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li><a href="sobre.html" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="servicos.html" class="nav-link active">Produtos & Serviços</a></li>
+                    <li><a href="portfolio.html" class="nav-link">Projetos & Clientes</a></li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="contato.html" class="btn btn-outline">Acessar Conta</a>
+                <a href="contato.html" class="btn btn-primary">Abrir Conta Grátis</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir Menu">&#9776;</button>
+        </div>
+    </header>
+
+    <!-- PAGE HERO BANNER -->
+    <section class="hero" style="padding: 4rem 1.5rem; text-align: center;">
+        <div class="container" style="max-width: 800px;">
+            <div class="hero-badge">Portfólio de Soluções Financeiras</div>
+            <h1 class="hero-title">Tudo o que você precisa no seu <span class="highlight-yellow">celular</span></h1>
+            <p class="hero-subtitle" style="margin: 0 auto;">
+                Oferecemos uma experiência completa com conta grátis, cartões, Pix instantâneo e linha de crédito inteligente adaptada ao perfil de cada jovem.
+            </p>
+        </div>
+    </section>
+
+    <!-- DETAILED SERVICES LIST -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">NOSSO CATÁLOGO</span>
+                <h2 class="section-title">Serviços Financeiros Nova Bank</h2>
+                <p class="section-subtitle">Acesso simples, 100% digital e sem pegadinhas.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <span class="card-tag-badge">Conta Digital</span>
+                    <h3 class="card-title">Conta Digital Gratuita</h3>
+                    <p class="card-text">
+                        Sua conta sem taxa de manutenção. Todo saldo parado rende automaticamente 100% do CDI com liquidez diária, permitindo que seu dinheiro trabalhe para você a qualquer momento.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="card-tag-badge">Sem Anuidade</span>
+                    <h3 class="card-title">Cartão Virtual e Físico</h3>
+                    <p class="card-text">
+                        Cartão de débito e crédito sem anuidade. Gere cartões virtuais temporários para compras seguras em e-commerces e serviços de streaming sem expor seus dados.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="card-tag-badge">Sem Tarifas</span>
+                    <h3 class="card-title">Pix e Transferências 24/7</h3>
+                    <p class="card-text">
+                        Faça transferências via Pix instantâneas e totalmente grátis para qualquer banco. Configure chaves Pix personalizadas e receba notificações em tempo real.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="card-tag-badge">Facilidade</span>
+                    <h3 class="card-title">Pagamentos e Boletos</h3>
+                    <p class="card-text">
+                        Pague boletos bancários, faturas de serviços públicos e impostos lendo o código de barras com a câmera do celular. Agende pagamentos futuros sem atrasos.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="card-tag-badge">Crédito Jovem</span>
+                    <h3 class="card-title">Empréstimo Pessoal para Jovens</h3>
+                    <p class="card-text">
+                        Crédito consciente e acessível para quem precisa investir nos estudos, equipamentos ou projetos pessoais, com as menores taxas do mercado digital.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="card-tag-badge">Caixinhas</span>
+                    <h3 class="card-title">Gestão e Caixinhas</h3>
+                    <p class="card-text">
+                        Organize suas finanças separando seu dinheiro em caixinhas de objetivos (Viagem, Reserva de Emergência, Cursos) com rendimento automático diário.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SIMULATOR (JAVASCRIPT POWERED) -->
+    <section class="section" style="background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">SIMULADOR INTERATIVO</span>
+                <h2 class="section-title">Simule seu Empréstimo Pessoal Jovem</h2>
+                <p class="section-subtitle">Arraste os seletores abaixo para ver a estimativa de parcelas em tempo real com taxa de apenas 0,99% a.m.</p>
+            </div>
+
+            <div class="simulator-box">
+                <div class="simulator-form">
+                    <div>
+                        <div class="sim-group">
+                            <label>Valor Desejado (R$):</label>
+                            <input type="range" id="simAmount" min="500" max="15000" step="500" value="3000">
+                            <div class="sim-value" id="simAmountVal">R$ 3.000,00</div>
+                        </div>
+
+                        <div class="sim-group">
+                            <label>Prazo de Pagamento (Meses):</label>
+                            <input type="range" id="simMonths" min="3" max="36" step="3" value="12">
+                            <div class="sim-value" id="simMonthsVal">12 meses</div>
+                        </div>
+                    </div>
+
+                    <div class="sim-result-card">
+                        <div class="sim-result-title">Estimativa de Parcela Mensal</div>
+                        <div class="sim-result-amount" id="simResultMonthly">R$ 266,24</div>
+                        <div style="font-size: 0.85rem; color: #CBD5E1; margin-bottom: 1.5rem;">
+                            Total a pagar: <strong id="simResultTotal" style="color: var(--primary-yellow);">R$ 3.194,88</strong>
+                        </div>
+                        <a href="contato.html" class="btn btn-primary" style="width: 100%;">Solicitar Crédito pelo App</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">POR QUE ESCOLHER O NOVA BANK</span>
+                <h2 class="section-title">Nova Bank vs. Bancos Tradicionais</h2>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm);">
+                    <thead>
+                        <tr style="background: var(--bg-dark-navy); color: white; text-align: left;">
+                            <th style="padding: 1.2rem;">Recursos e Tarifas</th>
+                            <th style="padding: 1.2rem; color: var(--primary-yellow);">Nova Bank</th>
+                            <th style="padding: 1.2rem; color: #94A3B8;">Bancos Tradicionais</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 1rem 1.2rem; font-weight: 600;">Taxa de Manutenção de Conta</td>
+                            <td style="padding: 1rem 1.2rem; color: var(--success); font-weight: 800;">R$ 0,00 (Grátis)</td>
+                            <td style="padding: 1rem 1.2rem; color: #DC2626;">R$ 25 a R$ 50/mês</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); background: #F8FAFC;">
+                            <td style="padding: 1rem 1.2rem; font-weight: 600;">Anuidade do Cartão</td>
+                            <td style="padding: 1rem 1.2rem; color: var(--success); font-weight: 800;">Zero Anuidade</td>
+                            <td style="padding: 1rem 1.2rem; color: #DC2626;">Cobrança Anual Recorrente</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <td style="padding: 1rem 1.2rem; font-weight: 600;">Transferências e Pix</td>
+                            <td style="padding: 1rem 1.2rem; color: var(--success); font-weight: 800;">Ilimitados e Gratuitos</td>
+                            <td style="padding: 1rem 1.2rem; color: #DC2626;">Limites e Tarifas TED/DOC</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-color); background: #F8FAFC;">
+                            <td style="padding: 1rem 1.2rem; font-weight: 600;">Atendimento ao Cliente</td>
+                            <td style="padding: 1rem 1.2rem; color: var(--success); font-weight: 800;">24 horas via Chat e App</td>
+                            <td style="padding: 1rem 1.2rem; color: #DC2626;">Filas em agências e horário comercial</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem 1.2rem; font-weight: 600;">Rendimento da Conta</td>
+                            <td style="padding: 1rem 1.2rem; color: var(--success); font-weight: 800;">100% do CDI Automático</td>
+                            <td style="padding: 1rem 1.2rem; color: #DC2626;">Poupança Tradicional (Baixo rendimento)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-brand">
+                    <img src="assets/logo_256.png" alt="Nova Bank Logo" class="logo-img">
+                    <span class="logo-text">Nova<span>Bank</span></span>
+                </a>
+                <p>Banco 100% digital que simplifica sua vida financeira com segurança, tecnologia e custo zero.</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Institucional</h4>
+                <ul class="footer-links">
+                    <li><a href="sobre.html">Sobre a Empresa</a></li>
+                    <li><a href="sobre.html#estrutura">Estrutura Organizacional</a></li>
+                    <li><a href="portfolio.html">Projetos & Clientes</a></li>
+                    <li><a href="contato.html">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Serviços</h4>
+                <ul class="footer-links">
+                    <li><a href="servicos.html">Conta Digital</a></li>
+                    <li><a href="servicos.html">Cartão Virtual</a></li>
+                    <li><a href="servicos.html">Pix e Transferências</a></li>
+                    <li><a href="servicos.html">Empréstimos</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Atendimento</h4>
+                <ul class="footer-links">
+                    <li><a href="contato.html">Central de Ajuda</a></li>
+                    <li><a href="contato.html">Fale Conosco</a></li>
+                    <li><a href="contato.html#faq">Perguntas Frequentes</a></li>
+                    <li><a href="contato.html">Ouvidoria</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nova Bank Instituição de Pagamento S.A. Todos os direitos reservados.</p>
+            <p>CNPJ: 0000000000000 | Regulação Banco Central do Brasil</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

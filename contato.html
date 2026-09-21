@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Bank - Contato e Central de Ajuda</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_32.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo-brand">
+                <img src="assets/logo_256.png" alt="Nova Bank Logo" class="logo-img">
+                <span class="logo-text">Nova<span>Bank</span></span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-link">Início</a></li>
+                    <li><a href="sobre.html" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="servicos.html" class="nav-link">Produtos & Serviços</a></li>
+                    <li><a href="portfolio.html" class="nav-link">Projetos & Clientes</a></li>
+                    <li><a href="contato.html" class="nav-link active">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="contato.html" class="btn btn-outline">Acessar Conta</a>
+                <a href="contato.html" class="btn btn-primary">Abrir Conta Grátis</a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir Menu">&#9776;</button>
+        </div>
+    </header>
+
+    <!-- PAGE HERO BANNER -->
+    <section class="hero" style="padding: 4rem 1.5rem; text-align: center;">
+        <div class="container" style="max-width: 800px;">
+            <div class="hero-badge">Canais de Atendimento 24/7</div>
+            <h1 class="hero-title">Estamos prontos para <span class="highlight-yellow">ajudar você</span></h1>
+            <p class="hero-subtitle" style="margin: 0 auto;">
+                Entre em contato com nossa equipe de suporte humanizado, tire suas dúvidas ou envie suas sugestões.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM & INFO GRID -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- CONTACT INFO CARD -->
+                <div class="contact-info-card">
+                    <div>
+                        <span class="section-tag" style="color: var(--primary-yellow);">ATENDIMENTO DIGITAL</span>
+                        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">Canais de Suporte Nova Bank</h2>
+                        
+                        <div class="contact-item">
+                            <span class="contact-item-icon-badge">WhatsApp</span>
+                            <div>
+                                <strong style="display: block; font-size: 1.05rem;">WhatsApp Oficial</strong>
+                                <p style="color: #CBD5E1; font-size: 0.9rem;">(11) 98765-4321 - Atendimento 24h</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-item-icon-badge">E-mail</span>
+                            <div>
+                                <strong style="display: block; font-size: 1.05rem;">E-mail de Suporte</strong>
+                                <p style="color: #CBD5E1; font-size: 0.9rem;">meuajuda@novabank.com.br</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-item-icon-badge">App Chat</span>
+                            <div>
+                                <strong style="display: block; font-size: 1.05rem;">Chat no Aplicativo</strong>
+                                <p style="color: #CBD5E1; font-size: 0.9rem;">Acesse o menu "Ajuda" no seu App Nova Bank</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-item-icon-badge">Ouvidoria</span>
+                            <div>
+                                <strong style="display: block; font-size: 1.05rem;">Ouvidoria e DPO</strong>
+                                <p style="color: #CBD5E1; font-size: 0.9rem;">0800 770 1234 - Seg a Sex, das 9h às 18h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.08); padding: 1.25rem; border-radius: var(--radius-md); margin-top: 1.5rem;">
+                        <span style="color: var(--primary-yellow); font-weight: 700;">Sede Digital Institucional:</span>
+                        <p style="font-size: 0.85rem; color: #E2E8F0; margin-top: 0.25rem;">
+                            Av. Paulista, 1500 - Bela Vista, São Paulo - SP, 01310-200
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FORM BOX -->
+                <div class="form-box">
+                    <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-primary);">Envie uma Mensagem</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Preencha os dados abaixo para falar diretamente com nosso atendimento.</p>
+
+                    <div id="formFeedback" style="display: none;"></div>
+
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="formName">Nome Completo *</label>
+                            <input type="text" id="formName" class="form-control" placeholder="Ex: Gabriel Silva" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="formEmail">E-mail Cadastrado ou de Contato *</label>
+                            <input type="email" id="formEmail" class="form-control" placeholder="seuemail@exemplo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="formSubject">Assunto *</label>
+                            <input type="text" id="formSubject" class="form-control" placeholder="Ex: Dúvida sobre Empréstimo Jovem" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="formMessage">Sua Mensagem *</label>
+                            <textarea id="formMessage" class="form-control" placeholder="Escreva aqui detalhadamente como podemos ajudar você..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 0.9rem;">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION SECTION -->
+    <section class="section" id="faq" style="background: var(--bg-surface); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">DUVIDAS FREQUENTES</span>
+                <h2 class="section-title">Perguntas Frequentes (FAQ)</h2>
+                <p class="section-subtitle">Clique nas perguntas abaixo para ver as respostas rápidas.</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span>Como faço para abrir uma conta no Nova Bank?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O processo é 100% digital! Basta baixar o aplicativo Nova Bank na Play Store ou App Store, ter em mãos um documento com foto (RG ou CNH) e completar o cadastro em menos de 3 minutos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>O Nova Bank cobra taxa de manutenção ou anuidade?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não! A conta digital e o cartão Nova Bank são totalmente isentos de taxas de manutenção, mensalidades ou anuidade.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como funciona o rendimento automático da conta?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Todo saldo mantido na sua conta principal ou nas Caixinhas rende automaticamente 100% do CDI em todos os dias úteis, com liquidez imediata para você resgatar quando quiser.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como solicitar o cartão de crédito e o cartão virtual?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Assim que sua conta for aprovada, você pode gerar cartões virtuais gratuitamente no app imediatamente. O pedido do cartão físico pode ser feito no menu "Cartões" do aplicativo.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>O Nova Bank é seguro e regulado pelo Banco Central?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! O Nova Bank opera em estrita conformidade com todas as resoluções do Banco Central do Brasil, contando com criptografia de ponta e biometria para proteção total dos seus fundos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-brand">
+                    <img src="assets/logo_256.png" alt="Nova Bank Logo" class="logo-img">
+                    <span class="logo-text">Nova<span>Bank</span></span>
+                </a>
+                <p>Banco 100% digital que simplifica sua vida financeira com segurança, tecnologia e custo zero.</p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Institucional</h4>
+                <ul class="footer-links">
+                    <li><a href="sobre.html">Sobre a Empresa</a></li>
+                    <li><a href="sobre.html#estrutura">Estrutura Organizacional</a></li>
+                    <li><a href="portfolio.html">Projetos & Clientes</a></li>
+                    <li><a href="contato.html">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Serviços</h4>
+                <ul class="footer-links">
+                    <li><a href="servicos.html">Conta Digital</a></li>
+                    <li><a href="servicos.html">Cartão Virtual</a></li>
+                    <li><a href="servicos.html">Pix e Transferências</a></li>
+                    <li><a href="servicos.html">Empréstimos</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Atendimento</h4>
+                <ul class="footer-links">
+                    <li><a href="contato.html">Central de Ajuda</a></li>
+                    <li><a href="contato.html">Fale Conosco</a></li>
+                    <li><a href="contato.html#faq">Perguntas Frequentes</a></li>
+                    <li><a href="contato.html">Ouvidoria</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nova Bank Instituição de Pagamento S.A. Todos os direitos reservados.</p>
+            <p>CNPJ: 0000000000000 | Regulação Banco Central do Brasil</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
