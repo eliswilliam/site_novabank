@@ -1,0 +1,845 @@
+{
+ "1. Listagem de clientes com suas contas": {
+  "colunas": [
+   "id_cliente",
+   "nome_completo",
+   "uf",
+   "numero_conta",
+   "tipo_conta",
+   "saldo",
+   "status"
+  ],
+  "linhas": [
+   [
+    1,
+    "Ana Beatriz Souza Lima",
+    "SP",
+    "10001-2",
+    "pagamento",
+    6906.08,
+    "ativa"
+   ],
+   [
+    1,
+    "Ana Beatriz Souza Lima",
+    "SP",
+    "10012-3",
+    "poupanca",
+    2200,
+    "ativa"
+   ],
+   [
+    7,
+    "Beatriz Almeida Nunes",
+    "BA",
+    "10008-1",
+    "pagamento",
+    4074.76,
+    "ativa"
+   ],
+   [
+    9,
+    "Camila Ribeiro Dias",
+    "AM",
+    "10010-7",
+    "pagamento",
+    7127.98,
+    "ativa"
+   ],
+   [
+    6,
+    "Gabriel Martins Pereira",
+    "PR",
+    "10007-9",
+    "pagamento",
+    9576.17,
+    "ativa"
+   ],
+   [
+    5,
+    "Julia Nascimento Rocha",
+    "RS",
+    "10006-6",
+    "pagamento",
+    9327.46,
+    "ativa"
+   ],
+   [
+    2,
+    "Lucas Ferreira Almeida",
+    "RJ",
+    "10002-5",
+    "pagamento",
+    8889.42,
+    "ativa"
+   ],
+   [
+    3,
+    "Mariana Costa Oliveira",
+    "PE",
+    "10003-8",
+    "pagamento",
+    5886.75,
+    "ativa"
+   ],
+   [
+    4,
+    "Pedro Henrique Santos",
+    "MG",
+    "10004-0",
+    "corrente",
+    11769.34,
+    "ativa"
+   ],
+   [
+    4,
+    "Pedro Henrique Santos",
+    "MG",
+    "10005-3",
+    "poupanca",
+    1200,
+    "ativa"
+   ],
+   [
+    8,
+    "Rafael Souza Barbosa",
+    "CE",
+    "10009-4",
+    "corrente",
+    14739.78,
+    "ativa"
+   ],
+   [
+    10,
+    "Thiago Oliveira Castro",
+    "DF",
+    "10011-0",
+    "pagamento",
+    0,
+    "bloqueada"
+   ]
+  ]
+ },
+ "2. Extrato de uma conta (cliente + conta + transacao)": {
+  "colunas": [
+   "nome_completo",
+   "numero_conta",
+   "data_hora",
+   "tipo",
+   "valor",
+   "descricao",
+   "status"
+  ],
+  "linhas": [
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-11-11 22:14:00",
+    "compra_debito",
+    40.7,
+    "Supermercado",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-11-10 09:15:00",
+    "boleto",
+    504,
+    "Pagamento de boleto - aluguel e contas",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-10-23 18:35:00",
+    "compra_debito",
+    166.39,
+    "Cinema",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-10-21 20:15:00",
+    "compra_credito",
+    143.79,
+    "Streaming anual",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-10-14 17:47:00",
+    "compra_debito",
+    83.18,
+    "Livraria",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-10-10 09:15:00",
+    "boleto",
+    504,
+    "Pagamento de boleto - aluguel e contas",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-09-26 20:15:00",
+    "compra_credito",
+    110.67,
+    "Passagem aerea",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-09-24 13:40:00",
+    "compra_debito",
+    176.78,
+    "Livraria",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-09-15 12:05:00",
+    "pix_enviado",
+    150,
+    "Pix - divisao do aluguel",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-09-10 09:15:00",
+    "boleto",
+    504,
+    "Pagamento de boleto - aluguel e contas",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-08-20 20:15:00",
+    "compra_credito",
+    72.98,
+    "Streaming anual",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-08-18 12:10:00",
+    "compra_debito",
+    168.78,
+    "Livraria",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-08-16 13:15:00",
+    "compra_debito",
+    63.04,
+    "Cinema",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-08-11 14:25:00",
+    "compra_debito",
+    29.21,
+    "Transporte por app",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-08-10 09:15:00",
+    "boleto",
+    504,
+    "Pagamento de boleto - aluguel e contas",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-07-24 21:07:00",
+    "compra_debito",
+    101.37,
+    "Restaurante",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-07-19 22:02:00",
+    "compra_debito",
+    179.5,
+    "Farmacia",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-07-18 17:35:00",
+    "compra_debito",
+    130.55,
+    "Cafe",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-07-12 20:15:00",
+    "compra_credito",
+    134.58,
+    "Streaming anual",
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "10001-2",
+    "2026-07-10 09:15:00",
+    "boleto",
+    504,
+    "Pagamento de boleto - aluguel e contas",
+    "concluida"
+   ]
+  ]
+ },
+ "3. Gastos por cartao de credito": {
+  "colunas": [
+   "nome_completo",
+   "numero_mascarado",
+   "bandeira",
+   "qtd_compras",
+   "total_gasto",
+   "limite_total",
+   "limite_disponivel"
+  ],
+  "linhas": [
+   [
+    "Pedro Henrique Santos",
+    "**** **** **** 6675",
+    "Mastercard",
+    5,
+    944.6899999999999,
+    6000,
+    5055.31
+   ],
+   [
+    "Lucas Ferreira Almeida",
+    "**** **** **** 9034",
+    "Visa",
+    4,
+    656.66,
+    3500,
+    2843.34
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "**** **** **** 7390",
+    "Mastercard",
+    4,
+    462.02,
+    1500,
+    1037.98
+   ],
+   [
+    "Rafael Souza Barbosa",
+    "**** **** **** 5508",
+    "Visa",
+    4,
+    459.19,
+    4500,
+    4040.81
+   ]
+  ]
+ },
+ "4. Situacao das parcelas de cada emprestimo": {
+  "colunas": [
+   "id_emprestimo",
+   "nome_completo",
+   "valor_principal",
+   "taxa_juros_mensal",
+   "prazo_meses",
+   "status_contrato",
+   "qtd_parcelas",
+   "parcelas_pagas",
+   "parcelas_em_aberto",
+   "total_pago"
+  ],
+  "linhas": [
+   [
+    1,
+    "Ana Beatriz Souza Lima",
+    3000,
+    0.99,
+    12,
+    "ativo",
+    12,
+    5,
+    7,
+    1331.9
+   ],
+   [
+    2,
+    "Pedro Henrique Santos",
+    12000,
+    0.99,
+    18,
+    "ativo",
+    18,
+    8,
+    10,
+    5848.96
+   ],
+   [
+    3,
+    "Gabriel Martins Pereira",
+    5000,
+    1.29,
+    18,
+    "ativo",
+    18,
+    2,
+    16,
+    626.1
+   ],
+   [
+    4,
+    "Rafael Souza Barbosa",
+    8000,
+    0.99,
+    12,
+    "quitado",
+    12,
+    12,
+    0,
+    8524.08
+   ],
+   [
+    5,
+    "Mariana Costa Oliveira",
+    1500,
+    1.49,
+    6,
+    "em_analise",
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    6,
+    "Thiago Oliveira Castro",
+    2500,
+    1.29,
+    9,
+    "cancelado",
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "5. Parcelas vencidas e ainda nao pagas": {
+  "colunas": [
+   "nome_completo",
+   "id_emprestimo",
+   "numero_parcela",
+   "valor_parcela",
+   "data_vencimento",
+   "status"
+  ],
+  "linhas": [
+   [
+    "Gabriel Martins Pereira",
+    3,
+    3,
+    313.05,
+    "2026-10-20",
+    "atrasada"
+   ],
+   [
+    "Pedro Henrique Santos",
+    2,
+    9,
+    731.12,
+    "2026-11-05",
+    "atrasada"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    1,
+    6,
+    266.38,
+    "2026-11-10",
+    "atrasada"
+   ]
+  ]
+ },
+ "6. Servicos mais contratados": {
+  "colunas": [
+   "nome_servico",
+   "categoria",
+   "total_contratacoes"
+  ],
+  "linhas": [
+   [
+    "Conta Digital Gratuita",
+    "conta",
+    10
+   ],
+   [
+    "Pix e Transferencias 24/7",
+    "pix",
+    10
+   ],
+   [
+    "Caixinhas com Rendimento",
+    "investimento",
+    6
+   ],
+   [
+    "Cartao Virtual e Fisico",
+    "cartao",
+    5
+   ],
+   [
+    "Emprestimo Pessoal Jovem",
+    "credito",
+    3
+   ],
+   [
+    "Pagamento de Boletos",
+    "pagamento",
+    3
+   ]
+  ]
+ },
+ "7. Progresso das caixinhas": {
+  "colunas": [
+   "nome_completo",
+   "nome_objetivo",
+   "valor_meta",
+   "saldo_atual",
+   "percentual_meta",
+   "status"
+  ],
+  "linhas": [
+   [
+    "Lucas Ferreira Almeida",
+    "Curso de Ingles",
+    3000,
+    3000,
+    100.0,
+    "concluida"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "Viagem para o Chile",
+    6000,
+    2450,
+    40.8,
+    "ativa"
+   ],
+   [
+    "Ana Beatriz Souza Lima",
+    "Reserva de Emergencia",
+    5000,
+    1800,
+    36.0,
+    "ativa"
+   ],
+   [
+    "Pedro Henrique Santos",
+    "Entrada do Apartamento",
+    20000,
+    7200,
+    36.0,
+    "ativa"
+   ],
+   [
+    "Rafael Souza Barbosa",
+    "Moto Usada",
+    12000,
+    3500,
+    29.2,
+    "ativa"
+   ],
+   [
+    "Camila Ribeiro Dias",
+    "Fundo de Estudos",
+    2500,
+    650,
+    26.0,
+    "ativa"
+   ],
+   [
+    "Mariana Costa Oliveira",
+    "Notebook Novo",
+    4500,
+    900,
+    20.0,
+    "ativa"
+   ],
+   [
+    "Julia Nascimento Rocha",
+    "Intercambio na Irlanda",
+    8000,
+    1200,
+    15.0,
+    "ativa"
+   ]
+  ]
+ },
+ "8. Conferencia de saldo (integridade dos dados)": {
+  "colunas": [
+   "numero_conta",
+   "saldo_gravado",
+   "saldo_calculado"
+  ],
+  "linhas": [
+   [
+    "10001-2",
+    6906.08,
+    6906.08
+   ],
+   [
+    "10002-5",
+    8889.42,
+    8889.42
+   ],
+   [
+    "10003-8",
+    5886.75,
+    5886.75
+   ],
+   [
+    "10004-0",
+    11769.34,
+    11769.34
+   ],
+   [
+    "10005-3",
+    1200,
+    1200
+   ],
+   [
+    "10006-6",
+    9327.46,
+    9327.460000000001
+   ],
+   [
+    "10007-9",
+    9576.17,
+    9576.169999999998
+   ],
+   [
+    "10008-1",
+    4074.76,
+    4074.7599999999998
+   ],
+   [
+    "10009-4",
+    14739.78,
+    14739.78
+   ],
+   [
+    "10010-7",
+    7127.98,
+    7127.9800000000005
+   ],
+   [
+    "10011-0",
+    0,
+    0
+   ],
+   [
+    "10012-3",
+    2200,
+    2200
+   ]
+  ]
+ },
+ "9. Extrato com saldo acumulado (CTE + window function)": {
+  "colunas": [
+   "data_hora",
+   "tipo",
+   "efeito",
+   "saldo_acumulado"
+  ],
+  "linhas": [
+   [
+    "2025-03-10 10:00:00",
+    "pix_recebido",
+    1500,
+    1500
+   ],
+   [
+    "2026-07-05 08:30:00",
+    "pix_recebido",
+    1800,
+    3300
+   ],
+   [
+    "2026-07-10 09:15:00",
+    "boleto",
+    -504,
+    2796
+   ],
+   [
+    "2026-07-18 17:35:00",
+    "compra_debito",
+    -130.55,
+    2665.45
+   ],
+   [
+    "2026-07-19 22:02:00",
+    "compra_debito",
+    -179.5,
+    2485.95
+   ],
+   [
+    "2026-07-24 21:07:00",
+    "compra_debito",
+    -101.37,
+    2384.58
+   ],
+   [
+    "2026-07-28 23:59:00",
+    "rendimento",
+    18.81,
+    2403.39
+   ],
+   [
+    "2026-08-05 08:30:00",
+    "pix_recebido",
+    1800,
+    4203.39
+   ],
+   [
+    "2026-08-10 09:15:00",
+    "boleto",
+    -504,
+    3699.39
+   ],
+   [
+    "2026-08-11 14:25:00",
+    "compra_debito",
+    -29.21,
+    3670.18
+   ],
+   [
+    "2026-08-16 13:15:00",
+    "compra_debito",
+    -63.04,
+    3607.14
+   ],
+   [
+    "2026-08-18 12:10:00",
+    "compra_debito",
+    -168.78,
+    3438.36
+   ],
+   [
+    "2026-08-28 23:59:00",
+    "rendimento",
+    28.69,
+    3467.05
+   ],
+   [
+    "2026-09-05 08:30:00",
+    "pix_recebido",
+    1800,
+    5267.05
+   ],
+   [
+    "2026-09-10 09:15:00",
+    "boleto",
+    -504,
+    4763.05
+   ],
+   [
+    "2026-09-15 12:05:00",
+    "pix_enviado",
+    -150,
+    4613.05
+   ],
+   [
+    "2026-09-16 18:40:00",
+    "pix_enviado",
+    75,
+    4688.05
+   ],
+   [
+    "2026-09-24 13:40:00",
+    "compra_debito",
+    -176.78,
+    4511.27
+   ],
+   [
+    "2026-09-28 23:59:00",
+    "rendimento",
+    40.92,
+    4552.19
+   ],
+   [
+    "2026-10-05 08:30:00",
+    "pix_recebido",
+    1800,
+    6352.19
+   ],
+   [
+    "2026-10-10 09:15:00",
+    "boleto",
+    -504,
+    5848.19
+   ],
+   [
+    "2026-10-14 17:47:00",
+    "compra_debito",
+    -83.18,
+    5765.01
+   ],
+   [
+    "2026-10-23 18:35:00",
+    "compra_debito",
+    -166.39,
+    5598.62
+   ],
+   [
+    "2026-10-28 23:59:00",
+    "rendimento",
+    52.16,
+    5650.78
+   ],
+   [
+    "2026-11-05 08:30:00",
+    "pix_recebido",
+    1800,
+    7450.78
+   ],
+   [
+    "2026-11-10 09:15:00",
+    "boleto",
+    -504,
+    6946.78
+   ],
+   [
+    "2026-11-11 22:14:00",
+    "compra_debito",
+    -40.7,
+    6906.08
+   ]
+  ]
+ }
+}

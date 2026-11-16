@@ -1,0 +1,273 @@
+# -*- coding: utf-8 -*-
+"""Modelo de dados do Nova Bank (fonte unica para SQL, DER e documento)."""
+
+
+def A(nome, tipo, desc, nn=False, pk=False, fk=None, uq=False, d=None, ck=None):
+    return {
+        "n": nome, "t": tipo, "desc": desc, "nn": nn, "pk": pk,
+        "fk": fk, "uq": uq, "d": d, "ck": ck,
+    }
+
+
+ENTIDADES = [
+    {
+        "nome": "cliente", "rotulo": "CLIENTE", "dominio": "Cadastro",
+        "pos": (40, 90),
+        "attrs": [
+            A("id_cliente", "INT", "Identificador único do cliente", nn=True, pk=True),
+            A("nome_completo", "VARCHAR(120)", "Nome civil completo do titular", nn=True),
+            A("cpf", "CHAR(11)", "CPF do cliente, somente os 11 dígitos", nn=True, uq=True,
+              ck="CHAR_LENGTH(cpf) = 11"),
+            A("data_nascimento", "DATE", "Data de nascimento (público jovem)", nn=True),
+            A("email", "VARCHAR(120)", "E-mail utilizado para acesso ao aplicativo", nn=True, uq=True),
+            A("telefone", "VARCHAR(20)", "Telefone celular para contato e chave Pix", nn=True),
+            A("cidade", "VARCHAR(60)", "Cidade de residência", nn=True),
+            A("uf", "CHAR(2)", "Sigla do estado (ex.: SP, RJ)", nn=True, ck="CHAR_LENGTH(uf) = 2"),
+            A("renda_mensal", "DECIMAL(10,2)", "Renda mensal declarada, em reais", nn=True,
+              ck="renda_mensal >= 0"),
+            A("data_cadastro", "DATE", "Data de abertura do cadastro", nn=True, d="CURRENT_DATE"),
+            A("status", "VARCHAR(12)", "Situação cadastral do cliente", nn=True, d="'ativo'",
+              ck="status IN ('ativo','inativo','bloqueado')"),
+        ],
+    },
+    {
+        "nome": "funcionario", "rotulo": "FUNCIONARIO", "dominio": "Relacionamento",
+        "pos": (1120, 440),
+        "attrs": [
+            A("id_funcionario", "INT", "Identificador único do colaborador", nn=True, pk=True),
+            A("nome", "VARCHAR(120)", "Nome completo do colaborador", nn=True),
+            A("cargo", "VARCHAR(60)", "Cargo exercido na estrutura organizacional", nn=True),
+            A("departamento", "VARCHAR(30)", "Diretoria ou departamento de lotação", nn=True,
+              ck="departamento IN ('Diretoria','Tecnologia','Financeiro','CX','Compliance')"),
+            A("email_corporativo", "VARCHAR(120)", "E-mail funcional do colaborador", nn=True, uq=True),
+            A("salario", "DECIMAL(10,2)", "Salário bruto mensal", nn=True, ck="salario > 0"),
+            A("data_admissao", "DATE", "Data de admissão na empresa", nn=True),
+            A("status", "VARCHAR(12)", "Situação do vínculo empregatício", nn=True, d="'ativo'",
+              ck="status IN ('ativo','afastado','desligado')"),
+        ],
+    },
+    {
+        "nome": "servico", "rotulo": "SERVICO", "dominio": "Catálogo",
+        "pos": (40, 700),
+        "attrs": [
+            A("id_servico", "INT", "Identificador único do serviço", nn=True, pk=True),
+            A("nome_servico", "VARCHAR(60)", "Nome comercial do serviço", nn=True, uq=True),
+            A("categoria", "VARCHAR(20)", "Categoria do serviço financeiro", nn=True,
+              ck="categoria IN ('conta','cartao','pix','pagamento','credito','investimento')"),
+            A("descricao", "VARCHAR(200)", "Descrição resumida exibida no aplicativo", nn=False),
+            A("tarifa", "DECIMAL(8,2)", "Tarifa mensal cobrada (0 = gratuito)", nn=True, d="0",
+              ck="tarifa >= 0"),
+            A("ativo", "BOOLEAN", "Indica se o serviço está disponível ao cliente", nn=True, d="TRUE"),
+        ],
+    },
+    {
+        "nome": "conta", "rotulo": "CONTA", "dominio": "Núcleo bancário",
+        "pos": (400, 90),
+        "attrs": [
+            A("id_conta", "INT", "Identificador único da conta", nn=True, pk=True),
+            A("numero_conta", "VARCHAR(10)", "Número da conta, com dígito verificador", nn=True, uq=True),
+            A("agencia", "VARCHAR(5)", "Código da agência digital", nn=True, d="'0001'"),
+            A("tipo_conta", "VARCHAR(15)", "Tipo de conta aberta", nn=True, d="'pagamento'",
+              ck="tipo_conta IN ('corrente','poupanca','pagamento')"),
+            A("saldo", "DECIMAL(12,2)", "Saldo disponível, em reais", nn=True, d="0",
+              ck="saldo >= 0"),
+            A("data_abertura", "DATE", "Data de abertura da conta", nn=True),
+            A("status", "VARCHAR(12)", "Situação da conta", nn=True, d="'ativa'",
+              ck="status IN ('ativa','encerrada','bloqueada')"),
+            A("id_cliente", "INT", "Cliente titular da conta", nn=True,
+              fk=("cliente", "id_cliente")),
+        ],
+    },
+    {
+        "nome": "cartao", "rotulo": "CARTAO", "dominio": "Núcleo bancário",
+        "pos": (760, 90),
+        "attrs": [
+            A("id_cartao", "INT", "Identificador único do cartão", nn=True, pk=True),
+            A("numero_mascarado", "VARCHAR(19)", "Número do cartão mascarado (LGPD)", nn=True),
+            A("tipo_cartao", "VARCHAR(10)", "Débito, crédito ou virtual", nn=True,
+              ck="tipo_cartao IN ('debito','credito','virtual')"),
+            A("bandeira", "VARCHAR(15)", "Bandeira do cartão", nn=True,
+              ck="bandeira IN ('Visa','Mastercard','Elo')"),
+            A("limite_total", "DECIMAL(10,2)", "Limite total aprovado", nn=True, d="0",
+              ck="limite_total >= 0"),
+            A("limite_disponivel", "DECIMAL(10,2)", "Limite ainda disponível para compras", nn=True, d="0",
+              ck="limite_disponivel >= 0 AND limite_disponivel <= limite_total"),
+            A("data_emissao", "DATE", "Data de emissão do cartão", nn=True),
+            A("data_validade", "DATE", "Data de validade do cartão", nn=True),
+            A("status", "VARCHAR(12)", "Situação do cartão", nn=True, d="'ativo'",
+              ck="status IN ('ativo','bloqueado','cancelado')"),
+            A("id_conta", "INT", "Conta à qual o cartão está vinculado", nn=True,
+              fk=("conta", "id_conta")),
+        ],
+    },
+    {
+        "nome": "chave_pix", "rotulo": "CHAVE_PIX", "dominio": "Núcleo bancário",
+        "pos": (760, 430),
+        "attrs": [
+            A("id_chave", "INT", "Identificador único da chave Pix", nn=True, pk=True),
+            A("tipo_chave", "VARCHAR(10)", "Tipo da chave registrada", nn=True,
+              ck="tipo_chave IN ('cpf','email','telefone','aleatoria')"),
+            A("valor_chave", "VARCHAR(100)", "Conteúdo da chave (único no arranjo Pix)", nn=True, uq=True),
+            A("data_cadastro", "DATE", "Data de registro da chave", nn=True),
+            A("ativa", "BOOLEAN", "Indica se a chave está habilitada", nn=True, d="TRUE"),
+            A("id_conta", "INT", "Conta dona da chave", nn=True, fk=("conta", "id_conta")),
+        ],
+    },
+    {
+        "nome": "caixinha", "rotulo": "CAIXINHA", "dominio": "Núcleo bancário",
+        "pos": (760, 690),
+        "attrs": [
+            A("id_caixinha", "INT", "Identificador único da caixinha", nn=True, pk=True),
+            A("nome_objetivo", "VARCHAR(60)", "Objetivo da reserva (viagem, curso, imóvel)", nn=True),
+            A("valor_meta", "DECIMAL(10,2)", "Valor da meta financeira", nn=True, ck="valor_meta > 0"),
+            A("saldo_atual", "DECIMAL(12,2)", "Valor já guardado na caixinha", nn=True, d="0",
+              ck="saldo_atual >= 0"),
+            A("data_criacao", "DATE", "Data de criação da caixinha", nn=True),
+            A("data_prevista", "DATE", "Data prevista para atingir a meta", nn=False),
+            A("status", "VARCHAR(12)", "Situação da caixinha", nn=True, d="'ativa'",
+              ck="status IN ('ativa','concluida','cancelada')"),
+            A("id_conta", "INT", "Conta vinculada à caixinha", nn=True, fk=("conta", "id_conta")),
+        ],
+    },
+    {
+        "nome": "emprestimo", "rotulo": "EMPRESTIMO", "dominio": "Crédito",
+        "pos": (400, 400),
+        "attrs": [
+            A("id_emprestimo", "INT", "Identificador único do contrato", nn=True, pk=True),
+            A("valor_principal", "DECIMAL(12,2)", "Valor liberado ao cliente", nn=True,
+              ck="valor_principal > 0"),
+            A("taxa_juros_mensal", "DECIMAL(5,2)", "Taxa de juros mensal, em porcentagem", nn=True,
+              ck="taxa_juros_mensal >= 0"),
+            A("prazo_meses", "INT", "Prazo total do contrato, em meses", nn=True,
+              ck="prazo_meses BETWEEN 3 AND 36"),
+            A("data_contratacao", "DATE", "Data de assinatura do contrato", nn=True),
+            A("status", "VARCHAR(12)", "Etapa atual do contrato", nn=True, d="'em_analise'",
+              ck="status IN ('em_analise','aprovado','ativo','quitado','cancelado')"),
+            A("id_cliente", "INT", "Cliente tomador do crédito", nn=True,
+              fk=("cliente", "id_cliente")),
+            A("id_conta", "INT", "Conta que recebe o desembolso", nn=True,
+              fk=("conta", "id_conta")),
+        ],
+    },
+    {
+        "nome": "parcela", "rotulo": "PARCELA", "dominio": "Crédito",
+        "pos": (400, 730),
+        "attrs": [
+            A("id_parcela", "INT", "Identificador único da parcela", nn=True, pk=True),
+            A("numero_parcela", "INT", "Número sequencial da parcela no contrato", nn=True,
+              ck="numero_parcela > 0"),
+            A("valor_parcela", "DECIMAL(10,2)", "Valor da parcela, calculado pela fórmula PMT", nn=True,
+              ck="valor_parcela > 0"),
+            A("data_vencimento", "DATE", "Data de vencimento da parcela", nn=True),
+            A("data_pagamento", "DATE", "Data efetiva do pagamento (nulo = em aberto)", nn=False),
+            A("status", "VARCHAR(12)", "Situação da parcela", nn=True, d="'aberta'",
+              ck="status IN ('aberta','paga','atrasada','cancelada')"),
+            A("id_emprestimo", "INT", "Contrato de origem da parcela", nn=True,
+              fk=("emprestimo", "id_emprestimo")),
+        ],
+    },
+    {
+        "nome": "contratacao_servico", "rotulo": "CONTRATACAO_SERVICO", "dominio": "Catálogo",
+        "pos": (40, 430),
+        "attrs": [
+            A("id_contratacao", "INT", "Identificador da contratação", nn=True, pk=True),
+            A("data_contratacao", "DATE", "Data em que o serviço foi aderido", nn=True),
+            A("status", "VARCHAR(12)", "Situação da contratação", nn=True, d="'ativa'",
+              ck="status IN ('ativa','encerrada','suspensa')"),
+            A("id_cliente", "INT", "Cliente que contratou o serviço", nn=True,
+              fk=("cliente", "id_cliente")),
+            A("id_servico", "INT", "Serviço contratado", nn=True, fk=("servico", "id_servico")),
+        ],
+    },
+    {
+        "nome": "transacao", "rotulo": "TRANSACAO", "dominio": "Núcleo bancário",
+        "pos": (1120, 90),
+        "attrs": [
+            A("id_transacao", "INT", "Identificador único da movimentação", nn=True, pk=True),
+            A("tipo", "VARCHAR(25)", "Natureza da movimentação", nn=True,
+              ck="tipo IN ('pix_enviado','pix_recebido','boleto','compra_debito','compra_credito','rendimento','saque','transferencia')"),
+            A("valor", "DECIMAL(12,2)", "Valor da movimentação, sempre positivo", nn=True, ck="valor > 0"),
+            A("data_hora", "TIMESTAMP", "Data e hora da movimentação", nn=True,
+              d="CURRENT_TIMESTAMP"),
+            A("descricao", "VARCHAR(150)", "Histórico apresentado no extrato", nn=False),
+            A("status", "VARCHAR(12)", "Situação da movimentação", nn=True, d="'concluida'",
+              ck="status IN ('concluida','pendente','cancelada','estornada')"),
+            A("id_conta_origem", "INT", "Conta debitada (nulo em entradas externas)", nn=False,
+              fk=("conta", "id_conta")),
+            A("id_conta_destino", "INT", "Conta creditada (nulo em saídas externas)", nn=False,
+              fk=("conta", "id_conta")),
+            A("id_cartao", "INT", "Cartão utilizado na compra, quando aplicável", nn=False,
+              fk=("cartao", "id_cartao")),
+        ],
+        "tchecks": [
+            "CHECK (id_conta_origem IS NOT NULL OR id_conta_destino IS NOT NULL)",
+            "CHECK (id_conta_origem IS NULL OR id_conta_destino IS NULL OR id_conta_origem <> id_conta_destino)",
+        ],
+    },
+    {
+        "nome": "atendimento", "rotulo": "ATENDIMENTO", "dominio": "Relacionamento",
+        "pos": (1120, 700),
+        "attrs": [
+            A("id_atendimento", "INT", "Identificador do atendimento", nn=True, pk=True),
+            A("canal", "VARCHAR(15)", "Canal de entrada do cliente", nn=True,
+              ck="canal IN ('app','chat','telefone','email','ouvidoria')"),
+            A("assunto", "VARCHAR(120)", "Motivo resumido do contato", nn=True),
+            A("data_abertura", "TIMESTAMP", "Data e hora de abertura do ticket", nn=True),
+            A("data_encerramento", "TIMESTAMP", "Data e hora de encerramento", nn=False),
+            A("status", "VARCHAR(15)", "Situação do atendimento", nn=True, d="'aberto'",
+              ck="status IN ('aberto','em_andamento','resolvido')"),
+            A("id_cliente", "INT", "Cliente atendido", nn=True, fk=("cliente", "id_cliente")),
+            A("id_funcionario", "INT", "Colaborador responsável pelo atendimento", nn=True,
+              fk=("funcionario", "id_funcionario")),
+        ],
+        "tchecks": [
+            "CHECK (data_encerramento IS NULL OR data_encerramento >= data_abertura)",
+        ],
+    },
+]
+
+# Tabelas na ordem de criacao (pais antes dos filhos)
+ORDEM = ["cliente", "funcionario", "servico", "conta", "cartao", "chave_pix",
+         "caixinha", "emprestimo", "parcela", "contratacao_servico", "transacao",
+         "atendimento"]
+
+POR_NOME = {e["nome"]: e for e in ENTIDADES}
+
+# (tabela_filha, tabela_pai, atributo_fk, cardinalidade, verbo)
+RELACIONAMENTOS = [
+    ("conta", "cliente", "id_cliente", "1:N", "possui"),
+    ("cartao", "conta", "id_conta", "1:N", "emite"),
+    ("chave_pix", "conta", "id_conta", "1:N", "registra"),
+    ("caixinha", "conta", "id_conta", "1:N", "cria"),
+    ("emprestimo", "cliente", "id_cliente", "1:N", "contrata"),
+    ("emprestimo", "conta", "id_conta", "1:N", "credita"),
+    ("parcela", "emprestimo", "id_emprestimo", "1:N", "gera"),
+    ("transacao", "conta", "id_conta_origem", "1:N", "debita"),
+    ("transacao", "conta", "id_conta_destino", "1:N", "credita"),
+    ("transacao", "cartao", "id_cartao", "1:N", "movimenta"),
+    ("contratacao_servico", "cliente", "id_cliente", "1:N", "adere"),
+    ("contratacao_servico", "servico", "id_servico", "1:N", "e adquirido"),
+    ("atendimento", "cliente", "id_cliente", "1:N", "abre"),
+    ("atendimento", "funcionario", "id_funcionario", "1:N", "atende"),
+]
+
+# Chaves unicas compostas
+UNICAS_COMPOSTAS = [
+    ("parcela", ["id_emprestimo", "numero_parcela"], "uk_parcela_contrato"),
+    ("contratacao_servico", ["id_cliente", "id_servico"], "uk_contratacao_cliente_servico"),
+]
+
+DDL_COMMENTS = {
+    "cliente": "Cadastro dos clientes (público jovem) do Nova Bank.",
+    "funcionario": "Colaboradores que compõem a estrutura organizacional do banco.",
+    "servico": "Catálogo de serviços financeiros oferecidos pelo banco.",
+    "conta": "Contas digitais abertas pelos clientes.",
+    "cartao": "Cartões de débito, crédito e virtuais vinculados às contas.",
+    "chave_pix": "Chaves Pix registradas por conta.",
+    "caixinha": "Caixinhas de objetivos com rendimento automático.",
+    "emprestimo": "Contratos de empréstimo pessoal jovem.",
+    "parcela": "Parcelas geradas a partir de cada contrato de empréstimo.",
+    "contratacao_servico": "Tabela associativa entre cliente e serviço (relacionamento N:N).",
+    "transacao": "Movimentações financeiras (Pix, boletos, compras e rendimentos).",
+    "atendimento": "Tickets de atendimento abertos pelos clientes.",
+}
